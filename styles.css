@@ -1,0 +1,19 @@
+.portfolio {
+  background-color: #FFA500; /* Orange */
+  color: #FFDE00; /* Mango Yellow */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #FFDE00; /* Mango Yellow */
+}
+
+a {
+  color: #FFA500; /* Orange */
+}
+
+button {
+  background-color: #FFDE00; /* Mango Yellow */
+  color: #FFA500; /* Orange */
+}
+
+/* Add more styles as needed */
