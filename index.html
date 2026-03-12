@@ -3,74 +3,464 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mango Orange Themed Portfolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffec40; /* Mango Background */
-            color: #e65100; /* Orange Text */
-        }
-        header {
-            background-color: #ff9800; /* Darker Orange */
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        section {
-            margin: 20px;
-            padding: 10px;
-            background-color: rgba(255, 236, 64, 0.8);
-            border-radius: 8px;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #ff9800;
-            color: white;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-        .portfolio-item {
-            border: 1px solid #ff5722; /* Light Orange */
-            border-radius: 5px;
-            margin: 10px;
-            padding: 10px;
-            background-color: #fff3e0; /* Light Mango */
-            transition: transform 0.2s;
-        }
-        .portfolio-item:hover {
-            transform: scale(1.05);
-        }
-    </style>
+    <title>UI/UX & Graphic Design Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>Mango Orange Themed Portfolio</h1>
-    </header>
-    <section>
-        <h2>About Me</h2>
-        <p>Hello! I am passionate about web development and design. Welcome to my portfolio.</p>
+    <!-- Cursor Light -->
+    <div class="cursor-light"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo"><i class="fas fa-pen-nib"></i> YourName</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#uiux" class="nav-link">UI/UX Design</a></li>
+                <li><a href="#graphic" class="nav-link">Graphic Design</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Creative Designer</h1>
+            <p class="hero-subtitle">Crafting Beautiful Digital Experiences</p>
+            <p class="hero-description">Specializing in UI/UX and Graphic Design</p>
+            <button class="btn btn-primary" onclick="playCustomSound(); document.getElementById('uiux').scrollIntoView({behavior: 'smooth'})">Explore My Work</button>
+        </div>
+        <div class="hero-animation">
+            <div class="blob"></div>
+            <div class="blob blob-2"></div>
+        </div>
     </section>
-    <section>
-        <h2>My Projects</h2>
-        <div class="portfolio-item">
-            <h3>Project 1</h3>
-            <p>Description of project 1.</p>
-        </div>
-        <div class="portfolio-item">
-            <h3>Project 2</h3>
-            <p>Description of project 2.</p>
-        </div>
-        <div class="portfolio-item">
-            <h3>Project 3</h3>
-            <p>Description of project 3.</p>
+
+    <!-- UI/UX Portfolio Section -->
+    <section id="uiux" class="portfolio-section uiux-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">UI/UX Design</h2>
+                <p class="section-subtitle">Creating intuitive and beautiful digital experiences that solve real problems</p>
+            </div>
+
+            <div class="portfolio-grid uiux-grid">
+                <!-- UI/UX Project 1 -->
+                <div class="portfolio-card uiux-card" onclick="playCustomSound()">
+                    <div class="card-image-wrapper">
+                        <img src="https://via.placeholder.com/400x300?text=Mobile+App+Design" alt="Mobile App Design">
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                <h3>Mobile App Redesign</h3>
+                                <p>User Research • Wireframing • Prototyping</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Mobile App Redesign</h3>
+                        <p class="card-category">UI/UX Design</p>
+                        <div class="card-tags">
+                            <span class="tag">Figma</span>
+                            <span class="tag">Prototyping</span>
+                            <span class="tag">User Testing</span>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat">
+                                <span class="stat-number">40%</span>
+                                <span class="stat-label">Engagement ↑</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">3.2M</span>
+                                <span class="stat-label">Users</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UI/UX Project 2 -->
+                <div class="portfolio-card uiux-card" onclick="playCustomSound()">
+                    <div class="card-image-wrapper">
+                        <img src="https://via.placeholder.com/400x300?text=SaaS+Dashboard" alt="SaaS Dashboard">
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                <h3>SaaS Dashboard Platform</h3>
+                                <p>Design System • Dashboard Design • Analytics</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>SaaS Dashboard</h3>
+                        <p class="card-category">UI/UX Design</p>
+                        <div class="card-tags">
+                            <span class="tag">Design System</span>
+                            <span class="tag">Dashboard</span>
+                            <span class="tag">Analytics</span>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat">
+                                <span class="stat-number">85%</span>
+                                <span class="stat-label">Efficiency</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">24/7</span>
+                                <span class="stat-label">Support</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UI/UX Project 3 -->
+                <div class="portfolio-card uiux-card" onclick="playCustomSound()">
+                    <div class="card-image-wrapper">
+                        <img src="https://via.placeholder.com/400x300?text=E-Commerce+Platform" alt="E-Commerce">
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                <h3>E-Commerce Platform</h3>
+                                <p>User Flow • Checkout Optimization • Mobile First</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>E-Commerce Platform</h3>
+                        <p class="card-category">UI/UX Design</p>
+                        <div class="card-tags">
+                            <span class="tag">E-Commerce</span>
+                            <span class="tag">Mobile First</span>
+                            <span class="tag">Conversion</span>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat">
+                                <span class="stat-number">55%</span>
+                                <span class="stat-label">Conversion ↑</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">$2.5M</span>
+                                <span class="stat-label">Revenue</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UI/UX Project 4 -->
+                <div class="portfolio-card uiux-card" onclick="playCustomSound()">
+                    <div class="card-image-wrapper">
+                        <img src="https://via.placeholder.com/400x300?text=Health+App" alt="Health App">
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                <h3>Health Tracking App</h3>
+                                <p>User Research • Accessibility • Health UX</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Health Tracking App</h3>
+                        <p class="card-category">UI/UX Design</p>
+                        <div class="card-tags">
+                            <span class="tag">Healthcare</span>
+                            <span class="tag">Accessibility</span>
+                            <span class="tag">Mobile</span>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat">
+                                <span class="stat-number">4.8★</span>
+                                <span class="stat-label">Rating</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">500K</span>
+                                <span class="stat-label">Downloads</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UI/UX Project 5 -->
+                <div class="portfolio-card uiux-card" onclick="playCustomSound()">
+                    <div class="card-image-wrapper">
+                        <img src="https://via.placeholder.com/400x300?text=Social+Network" alt="Social Network">
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                <h3>Social Network Redesign</h3>
+                                <p>Community • Real-time • Social Features</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Social Network</h3>
+                        <p class="card-category">UI/UX Design</p>
+                        <div class="card-tags">
+                            <span class="tag">Social</span>
+                            <span class="tag">Real-time</span>
+                            <span class="tag">Community</span>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat">
+                                <span class="stat-number">10M</span>
+                                <span class="stat-label">Active Users</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">45min</span>
+                                <span class="stat-label">Daily Usage</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UI/UX Project 6 -->
+                <div class="portfolio-card uiux-card" onclick="playCustomSound()">
+                    <div class="card-image-wrapper">
+                        <img src="https://via.placeholder.com/400x300?text=Fintech+App" alt="Fintech App">
+                        <div class="card-overlay">
+                            <div class="overlay-content">
+                                <h3>Fintech Application</h3>
+                                <p>Security • Payments • Trust Design</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Fintech Application</h3>
+                        <p class="card-category">UI/UX Design</p>
+                        <div class="card-tags">
+                            <span class="tag">Fintech</span>
+                            <span class="tag">Security</span>
+                            <span class="tag">Payments</span>
+                        </div>
+                        <div class="card-stats">
+                            <div class="stat">
+                                <span class="stat-number">99.9%</span>
+                                <span class="stat-label">Uptime</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">$50M+</span>
+                                <span class="stat-label">Transactions</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    <footer>
-        <p>&copy; 2026 Mango Orange Portfolio</p>
+
+    <!-- Graphic Design Portfolio Section -->
+    <section id="graphic" class="portfolio-section graphic-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Graphic Design</h2>
+                <p class="section-subtitle">Stunning visual designs that elevate brands and capture attention</p>
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all" onclick="playCustomSound(); filterProjects('all')">All</button>
+                <button class="filter-btn" data-filter="branding" onclick="playCustomSound(); filterProjects('branding')">Branding</button>
+                <button class="filter-btn" data-filter="social" onclick="playCustomSound(); filterProjects('social')">Social Media</button>
+                <button class="filter-btn" data-filter="packaging" onclick="playCustomSound(); filterProjects('packaging')">Packaging</button>
+                <button class="filter-btn" data-filter="illustration" onclick="playCustomSound(); filterProjects('illustration')">Illustration</button>
+            </div>
+
+            <div class="graphic-grid">
+                <!-- Branding Project -->
+                <div class="graphic-card" data-category="branding" onclick="playCustomSound()">
+                    <div class="graphic-image">
+                        <img src="https://via.placeholder.com/350x350?text=Brand+Identity" alt="Brand Identity">
+                        <div class="graphic-overlay">
+                            <div class="graphic-info">
+                                <h3>Modern Brand Identity</h3>
+                                <p class="graphic-category">Branding</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Project 1 -->
+                <div class="graphic-card" data-category="social" onclick="playCustomSound()">
+                    <div class="graphic-image">
+                        <img src="https://via.placeholder.com/350x350?text=Social+Campaign" alt="Social Campaign">
+                        <div class="graphic-overlay">
+                            <div class="graphic-info">
+                                <h3>Social Media Campaign</h3>
+                                <p class="graphic-category">Social Media</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Packaging Project -->
+                <div class="graphic-card" data-category="packaging" onclick="playCustomSound()">
+                    <div class="graphic-image">
+                        <img src="https://via.placeholder.com/350x350?text=Package+Design" alt="Package Design">
+                        <div class="graphic-overlay">
+                            <div class="graphic-info">
+                                <h3>Product Packaging</h3>
+                                <p class="graphic-category">Packaging</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Illustration Project -->
+                <div class="graphic-card" data-category="illustration" onclick="playCustomSound()">
+                    <div class="graphic-image">
+                        <img src="https://via.placeholder.com/350x350?text=Character+Art" alt="Character Art">
+                        <div class="graphic-overlay">
+                            <div class="graphic-info">
+                                <h3>Character Illustration</h3>
+                                <p class="graphic-category">Illustration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Project 2 -->
+                <div class="graphic-card" data-category="social" onclick="playCustomSound()">
+                    <div class="graphic-image">
+                        <img src="https://via.placeholder.com/350x350?text=Instagram+Posts" alt="Instagram Posts">
+                        <div class="graphic-overlay">
+                            <div class="graphic-info">
+                                <h3>Instagram Content Series</h3>
+                                <p class="graphic-category">Social Media</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Branding Project 2 -->
+                <div class="graphic-card" data-category="branding" onclick="playCustomSound()">
+                    <div class="graphic-image">
+                        <img src="https://via.placeholder.com/350x350?text=Logo+Design" alt="Logo Design">
+                        <div class="graphic-overlay">
+                            <div class="graphic-info">
+                                <h3>Logo Design System</h3>
+                                <p class="graphic-category">Branding</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Illustration Project 2 -->
+                <div class="graphic-card" data-category="illustration" onclick="playCustomSound()">
+                    <div class="graphic-image">
+                        <img src="https://via.placeholder.com/350x350?text=Digital+Art" alt="Digital Art">
+                        <div class="graphic-overlay">
+                            <div class="graphic-info">
+                                <h3>Digital Art Collection</h3>
+                                <p class="graphic-category">Illustration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Packaging Project 2 -->
+                <div class="graphic-card" data-category="packaging" onclick="playCustomSound()">
+                    <div class="graphic-image">
+                        <img src="https://via.placeholder.com/350x350?text=Label+Design" alt="Label Design">
+                        <div class="graphic-overlay">
+                            <div class="graphic-info">
+                                <h3>Label & Packaging</h3>
+                                <p class="graphic-category">Packaging</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Branding Project 3 -->
+                <div class="graphic-card" data-category="branding" onclick="playCustomSound()">
+                    <div class="graphic-image">
+                        <img src="https://via.placeholder.com/350x350?text=Style+Guide" alt="Style Guide">
+                        <div class="graphic-overlay">
+                            <div class="graphic-info">
+                                <h3>Brand Style Guide</h3>
+                                <p class="graphic-category">Branding</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm a passionate UI/UX and graphic designer with a keen eye for aesthetics and user experience. I create beautiful, functional designs that solve real problems and delight users.</p>
+                    <p>With several years of experience in the design industry, I've worked with amazing brands and helped bring their visions to life through creative solutions and thoughtful design.</p>
+                    <div class="skills">
+                        <span class="skill-tag">UI Design</span>
+                        <span class="skill-tag">UX Research</span>
+                        <span class="skill-tag">Graphic Design</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Adobe Suite</span>
+                        <span class="skill-tag">Branding</span>
+                        <span class="skill-tag">Prototyping</span>
+                        <span class="skill-tag">User Testing</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/300x300?text=Your+Photo" alt="Profile">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="contact-subtitle">Have a project in mind? Let's work together!</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <h4><i class="fas fa-envelope"></i> Email</h4>
+                        <p><a href="mailto:your@email.com">your@email.com</a></p>
+                    </div>
+                    <div class="info-item">
+                        <h4><i class="fas fa-phone"></i> Phone</h4>
+                        <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                    </div>
+                    <div class="info-item">
+                        <h4><i class="fas fa-map-marker-alt"></i> Location</h4>
+                        <p>Your City, Country</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-btn" onclick="playCustomSound(); return false;"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-btn" onclick="playCustomSound(); return false;"><i class="fab fa-dribbble"></i></a>
+                        <a href="#" class="social-btn" onclick="playCustomSound(); return false;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="handleFormSubmit(event)">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn btn-primary" onclick="playCustomSound()">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Your Name. All rights reserved.</p>
+        </div>
     </footer>
+
+    <!-- Hidden Audio Element -->
+    <audio id="clickSound" preload="auto">
+        <source src="https://cdn.jsdelivr.net/gh/ketukini55/ketan-portfolio@main/click-sound.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
 </body>
 </html>
