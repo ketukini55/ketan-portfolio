@@ -21,7 +21,6 @@ async function loadClickSound() {
         const response = await fetch(CLICK_SOUND_URL);
         const arrayBuffer = await response.arrayBuffer();
         audioBuffer = await context.decodeAudioData(arrayBuffer);
-        console.log('Sound loaded successfully');
     } catch (error) {
         console.error('Error loading sound:', error);
     }
@@ -68,15 +67,32 @@ document.addEventListener('click', () => {
     loadClickSound();
 }, { once: true });
 
-document.addEventListener('touchstart', () => {
-    initAudioContext();
-    loadClickSound();
-}, { once: true });
-
 // Filter Projects Function
 function filterProjects(category) {
     const cards = document.querySelectorAll('.graphic-card');
     const buttons = document.querySelectorAll('.filter-btn');
+    
+    buttons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.filter === category) {
+            btn.classList.add('active');
+        }
+    });
+    
+    cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+            card.classList.remove('hidden');
+            card.style.animation = 'fadeIn 0.5s ease-out';
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+}
+
+// Filter Web Projects Function
+function filterWebProjects(category) {
+    const cards = document.querySelectorAll('.web-card');
+    const buttons = document.querySelectorAll('.web-filter-btn');
     
     buttons.forEach(btn => {
         btn.classList.remove('active');
@@ -119,17 +135,19 @@ function handleFormSubmit(event) {
     console.log('Form submitted:', Object.fromEntries(formData));
     
     form.reset();
-    alert('Thank you for your message! I\'ll get back to you soon.');
+    alert('Thank you for reaching out! I will get back to you soon. 🚀');
 }
 
 // Smooth scroll for navigation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        playCustomSound();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
+        if (this.getAttribute('href').startsWith('#')) {
+            e.preventDefault();
+            playCustomSound();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
         }
     });
 });
