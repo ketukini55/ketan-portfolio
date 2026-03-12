@@ -5,14 +5,941 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ketan Kini - UI/UX & Graphic Design Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #ffffff;
+            --mango-orange: #FF8C42;
+            --dark: #1a1a1a;
+            --light-gray: #f5f5f5;
+            --gray: #e0e0e0;
+            --accent-pink: #FF6B9D;
+            --accent-purple: #9D4EDD;
+            --success-green: #06D6A0;
+            --web-blue: #4F9DF9;
+            --web-purple: #5D4EFF;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--white);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        .cursor-light {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 140, 66, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            filter: blur(40px);
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--mango-orange);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(255, 140, 66, 0.5);
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--mango-orange);
+            animation: fadeIn 0.6s ease-out;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--mango-orange), var(--accent-pink));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--mango-orange);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 2rem;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffffff 0%, #FFF5F0 100%);
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--dark), var(--mango-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--mango-orange);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--mango-orange), var(--accent-pink));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero-animation {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 400px;
+            height: 400px;
+        }
+
+        .blob {
+            position: absolute;
+            background: linear-gradient(135deg, var(--mango-orange), #FF6B9D);
+            opacity: 0.7;
+            filter: blur(40px);
+            width: 200px;
+            height: 200px;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: blob 7s infinite;
+        }
+
+        .blob-2 {
+            width: 150px;
+            height: 150px;
+            bottom: 20px;
+            right: 20px;
+            animation: blob 5s infinite reverse;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--mango-orange), var(--accent-pink));
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 140, 66, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 140, 66, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--dark), var(--mango-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        section {
+            padding: 5rem 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .portfolio-section {
+            position: relative;
+        }
+
+        .uiux-section {
+            background: linear-gradient(135deg, #ffffff 0%, #FFF5F0 100%);
+        }
+
+        .graphic-section {
+            background: linear-gradient(135deg, #FFF5F0 0%, #ffffff 100%);
+        }
+
+        .web-section {
+            background: linear-gradient(135deg, #ffffff 0%, #F0F4FF 100%);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .portfolio-card {
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(255, 140, 66, 0.25);
+        }
+
+        .card-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+            background: linear-gradient(135deg, var(--mango-orange), var(--accent-pink));
+        }
+
+        .card-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-card:hover .card-image-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            text-align: center;
+            color: white;
+        }
+
+        .overlay-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .overlay-content p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .card-category {
+            color: var(--mango-orange);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, rgba(255, 140, 66, 0.1), rgba(255, 107, 157, 0.1));
+            color: var(--mango-orange);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--mango-orange);
+        }
+
+        .card-stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray);
+        }
+
+        .stat {
+            flex: 1;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--mango-orange);
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 0.3rem;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.8rem;
+            border: 2px solid var(--gray);
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--mango-orange), var(--accent-pink));
+            color: white;
+            border-color: var(--mango-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 140, 66, 0.3);
+        }
+
+        .graphic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .graphic-card {
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .graphic-card.hidden {
+            display: none;
+        }
+
+        .graphic-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--mango-orange), var(--accent-pink));
+        }
+
+        .graphic-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .graphic-card:hover .graphic-image img {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        .graphic-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 140, 66, 0.9), rgba(255, 107, 157, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .graphic-card:hover .graphic-overlay {
+            opacity: 1;
+        }
+
+        .graphic-info {
+            text-align: center;
+            color: white;
+        }
+
+        .graphic-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .graphic-category {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .web-filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .web-filter-btn {
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--gray);
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .web-filter-btn:hover,
+        .web-filter-btn.active {
+            background: linear-gradient(135deg, var(--web-blue), var(--web-purple));
+            color: white;
+            border-color: var(--web-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 157, 249, 0.3);
+        }
+
+        .web-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .web-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .web-card.hidden {
+            display: none;
+        }
+
+        .web-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(79, 157, 249, 0.25);
+        }
+
+        .web-card-image {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+            background: linear-gradient(135deg, var(--web-blue), var(--web-purple));
+        }
+
+        .web-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .web-card:hover .web-card-image img {
+            transform: scale(1.1);
+        }
+
+        .web-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(79, 157, 249, 0.9), rgba(93, 78, 255, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .web-card:hover .web-overlay {
+            opacity: 1;
+        }
+
+        .web-card-link {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .visit-btn,
+        .code-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            color: var(--web-blue);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .visit-btn:hover,
+        .code-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .web-card-content {
+            padding: 2rem;
+        }
+
+        .web-card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .web-category {
+            color: var(--web-blue);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .web-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .web-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, rgba(79, 157, 249, 0.1), rgba(93, 78, 255, 0.1));
+            color: var(--web-blue);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--web-blue);
+        }
+
+        .web-stats-row {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray);
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .web-stats-row span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .web-stats-row i {
+            color: var(--web-blue);
+        }
+
+        .about {
+            background: linear-gradient(135deg, #ffffff 0%, #FFF5F0 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-box-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--mango-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-box-label {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--mango-orange), var(--accent-pink));
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(255, 140, 66, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 140, 66, 0.3);
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, var(--mango-orange), var(--accent-pink));
+            color: white;
+        }
+
+        .contact-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-item h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .info-item a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            word-break: break-all;
+        }
+
+        .info-item a:hover {
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+        }
+
+        .social-btn:hover {
+            background: white;
+            color: var(--mango-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-form ::placeholder {
+            color: #999;
+        }
+
+        .footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes blob {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-menu { display: none; }
+            .hero-title { font-size: 2.5rem; }
+            .hero-animation { display: none; }
+            .section-title { font-size: 2rem; }
+            .about-content, .contact-content { grid-template-columns: 1fr; }
+            .cursor-light, .cursor-dot { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 1.8rem; }
+            .section-title { font-size: 1.5rem; }
+            section { padding: 3rem 1rem; }
+            .portfolio-grid, .graphic-grid, .web-grid { grid-template-columns: 1fr; }
+            .web-card-link { flex-direction: column; }
+            .visit-btn, .code-btn { width: 100%; justify-content: center; }
+            .about-stats { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Cursor Light -->
     <div class="cursor-light"></div>
     <div class="cursor-dot"></div>
 
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo"><i class="fas fa-pen-nib"></i> Ketan Kini</div>
@@ -32,7 +959,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-badge">
@@ -49,7 +975,6 @@
         </div>
     </section>
 
-    <!-- UI/UX Portfolio Section -->
     <section id="uiux" class="portfolio-section uiux-section">
         <div class="container">
             <div class="section-header">
@@ -57,8 +982,8 @@
                 <p class="section-subtitle">Designing user-centered interfaces that are beautiful, intuitive, and functional</p>
             </div>
 
-            <div class="portfolio-grid uiux-grid">
-                <div class="portfolio-card uiux-card" onclick="playCustomSound()">
+            <div class="portfolio-grid">
+                <div class="portfolio-card" onclick="playCustomSound()">
                     <div class="card-image-wrapper">
                         <img src="https://via.placeholder.com/400x300?text=Travel+App" alt="Travel App">
                         <div class="card-overlay">
@@ -89,7 +1014,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-card uiux-card" onclick="playCustomSound()">
+                <div class="portfolio-card" onclick="playCustomSound()">
                     <div class="card-image-wrapper">
                         <img src="https://via.placeholder.com/400x300?text=Fitness+App" alt="Fitness App">
                         <div class="card-overlay">
@@ -120,7 +1045,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-card uiux-card" onclick="playCustomSound()">
+                <div class="portfolio-card" onclick="playCustomSound()">
                     <div class="card-image-wrapper">
                         <img src="https://via.placeholder.com/400x300?text=E-Learning+App" alt="E-Learning">
                         <div class="card-overlay">
@@ -151,7 +1076,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-card uiux-card" onclick="playCustomSound()">
+                <div class="portfolio-card" onclick="playCustomSound()">
                     <div class="card-image-wrapper">
                         <img src="https://via.placeholder.com/400x300?text=Food+App" alt="Food Delivery">
                         <div class="card-overlay">
@@ -182,7 +1107,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-card uiux-card" onclick="playCustomSound()">
+                <div class="portfolio-card" onclick="playCustomSound()">
                     <div class="card-image-wrapper">
                         <img src="https://via.placeholder.com/400x300?text=Music+App" alt="Music App">
                         <div class="card-overlay">
@@ -213,7 +1138,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-card uiux-card" onclick="playCustomSound()">
+                <div class="portfolio-card" onclick="playCustomSound()">
                     <div class="card-image-wrapper">
                         <img src="https://via.placeholder.com/400x300?text=Banking+App" alt="Banking App">
                         <div class="card-overlay">
@@ -247,7 +1172,6 @@
         </div>
     </section>
 
-    <!-- Graphic Design Portfolio Section -->
     <section id="graphic" class="portfolio-section graphic-section">
         <div class="container">
             <div class="section-header">
@@ -266,7 +1190,7 @@
             <div class="graphic-grid">
                 <div class="graphic-card" data-category="branding" onclick="playCustomSound()">
                     <div class="graphic-image">
-                        <img src="https://via.placeholder.com/350x350?text=Logo+Design" alt="Logo Design">
+                        <img src="https://via.placeholder.com/350x350?text=Logo+Design" alt="Logo">
                         <div class="graphic-overlay">
                             <div class="graphic-info">
                                 <h3>Logo Design</h3>
@@ -278,7 +1202,7 @@
 
                 <div class="graphic-card" data-category="social" onclick="playCustomSound()">
                     <div class="graphic-image">
-                        <img src="https://via.placeholder.com/350x350?text=Instagram+Posts" alt="Instagram Posts">
+                        <img src="https://via.placeholder.com/350x350?text=Instagram+Posts" alt="Instagram">
                         <div class="graphic-overlay">
                             <div class="graphic-info">
                                 <h3>Instagram Posts</h3>
@@ -290,7 +1214,7 @@
 
                 <div class="graphic-card" data-category="poster" onclick="playCustomSound()">
                     <div class="graphic-image">
-                        <img src="https://via.placeholder.com/350x350?text=Event+Poster" alt="Event Poster">
+                        <img src="https://via.placeholder.com/350x350?text=Event+Poster" alt="Poster">
                         <div class="graphic-overlay">
                             <div class="graphic-info">
                                 <h3>Event Poster</h3>
@@ -314,7 +1238,7 @@
 
                 <div class="graphic-card" data-category="social" onclick="playCustomSound()">
                     <div class="graphic-image">
-                        <img src="https://via.placeholder.com/350x350?text=Facebook+Banner" alt="Facebook Banner">
+                        <img src="https://via.placeholder.com/350x350?text=Facebook+Banner" alt="Banner">
                         <div class="graphic-overlay">
                             <div class="graphic-info">
                                 <h3>Facebook Banners</h3>
@@ -326,7 +1250,7 @@
 
                 <div class="graphic-card" data-category="branding" onclick="playCustomSound()">
                     <div class="graphic-image">
-                        <img src="https://via.placeholder.com/350x350?text=Business+Card" alt="Business Card">
+                        <img src="https://via.placeholder.com/350x350?text=Business+Card" alt="Card">
                         <div class="graphic-overlay">
                             <div class="graphic-info">
                                 <h3>Business Card</h3>
@@ -338,7 +1262,7 @@
 
                 <div class="graphic-card" data-category="illustration" onclick="playCustomSound()">
                     <div class="graphic-image">
-                        <img src="https://via.placeholder.com/350x350?text=Digital+Art" alt="Digital Art">
+                        <img src="https://via.placeholder.com/350x350?text=Digital+Art" alt="Art">
                         <div class="graphic-overlay">
                             <div class="graphic-info">
                                 <h3>Digital Illustration</h3>
@@ -350,7 +1274,7 @@
 
                 <div class="graphic-card" data-category="poster" onclick="playCustomSound()">
                     <div class="graphic-image">
-                        <img src="https://via.placeholder.com/350x350?text=Movie+Poster" alt="Movie Poster">
+                        <img src="https://via.placeholder.com/350x350?text=Movie+Poster" alt="Movie">
                         <div class="graphic-overlay">
                             <div class="graphic-info">
                                 <h3>Movie Poster</h3>
@@ -375,7 +1299,6 @@
         </div>
     </section>
 
-    <!-- Web Development Portfolio Section -->
     <section id="web" class="portfolio-section web-section">
         <div class="container">
             <div class="section-header">
@@ -393,13 +1316,13 @@
             <div class="web-grid">
                 <div class="web-card" data-category="responsive" onclick="playCustomSound()">
                     <div class="web-card-image">
-                        <img src="https://via.placeholder.com/400x300?text=Portfolio+Website" alt="Portfolio">
+                        <img src="https://via.placeholder.com/400x300?text=Portfolio" alt="Portfolio">
                         <div class="web-overlay">
                             <div class="web-card-link">
-                                <a href="#" class="visit-btn" onclick="playCustomSound(); event.preventDefault();">
+                                <a href="#" class="visit-btn" onclick="event.preventDefault();">
                                     <i class="fas fa-external-link-alt"></i> View
                                 </a>
-                                <a href="#" class="code-btn" onclick="playCustomSound(); event.preventDefault();">
+                                <a href="#" class="code-btn" onclick="event.preventDefault();">
                                     <i class="fas fa-code"></i> Code
                                 </a>
                             </div>
@@ -423,13 +1346,13 @@
 
                 <div class="web-card" data-category="landing" onclick="playCustomSound()">
                     <div class="web-card-image">
-                        <img src="https://via.placeholder.com/400x300?text=Landing+Page" alt="Landing Page">
+                        <img src="https://via.placeholder.com/400x300?text=Landing+Page" alt="Landing">
                         <div class="web-overlay">
                             <div class="web-card-link">
-                                <a href="#" class="visit-btn" onclick="playCustomSound(); event.preventDefault();">
+                                <a href="#" class="visit-btn" onclick="event.preventDefault();">
                                     <i class="fas fa-external-link-alt"></i> View
                                 </a>
-                                <a href="#" class="code-btn" onclick="playCustomSound(); event.preventDefault();">
+                                <a href="#" class="code-btn" onclick="event.preventDefault();">
                                     <i class="fas fa-code"></i> Code
                                 </a>
                             </div>
@@ -453,13 +1376,13 @@
 
                 <div class="web-card" data-category="interactive" onclick="playCustomSound()">
                     <div class="web-card-image">
-                        <img src="https://via.placeholder.com/400x300?text=Todo+App" alt="Todo App">
+                        <img src="https://via.placeholder.com/400x300?text=Todo+App" alt="Todo">
                         <div class="web-overlay">
                             <div class="web-card-link">
-                                <a href="#" class="visit-btn" onclick="playCustomSound(); event.preventDefault();">
+                                <a href="#" class="visit-btn" onclick="event.preventDefault();">
                                     <i class="fas fa-external-link-alt"></i> View
                                 </a>
-                                <a href="#" class="code-btn" onclick="playCustomSound(); event.preventDefault();">
+                                <a href="#" class="code-btn" onclick="event.preventDefault();">
                                     <i class="fas fa-code"></i> Code
                                 </a>
                             </div>
@@ -486,10 +1409,10 @@
                         <img src="https://via.placeholder.com/400x300?text=Blog+Website" alt="Blog">
                         <div class="web-overlay">
                             <div class="web-card-link">
-                                <a href="#" class="visit-btn" onclick="playCustomSound(); event.preventDefault();">
+                                <a href="#" class="visit-btn" onclick="event.preventDefault();">
                                     <i class="fas fa-external-link-alt"></i> View
                                 </a>
-                                <a href="#" class="code-btn" onclick="playCustomSound(); event.preventDefault();">
+                                <a href="#" class="code-btn" onclick="event.preventDefault();">
                                     <i class="fas fa-code"></i> Code
                                 </a>
                             </div>
@@ -516,10 +1439,10 @@
                         <img src="https://via.placeholder.com/400x300?text=Calculator" alt="Calculator">
                         <div class="web-overlay">
                             <div class="web-card-link">
-                                <a href="#" class="visit-btn" onclick="playCustomSound(); event.preventDefault();">
+                                <a href="#" class="visit-btn" onclick="event.preventDefault();">
                                     <i class="fas fa-external-link-alt"></i> View
                                 </a>
-                                <a href="#" class="code-btn" onclick="playCustomSound(); event.preventDefault();">
+                                <a href="#" class="code-btn" onclick="event.preventDefault();">
                                     <i class="fas fa-code"></i> Code
                                 </a>
                             </div>
@@ -546,10 +1469,10 @@
                         <img src="https://via.placeholder.com/400x300?text=Restaurant+Site" alt="Restaurant">
                         <div class="web-overlay">
                             <div class="web-card-link">
-                                <a href="#" class="visit-btn" onclick="playCustomSound(); event.preventDefault();">
+                                <a href="#" class="visit-btn" onclick="event.preventDefault();">
                                     <i class="fas fa-external-link-alt"></i> View
                                 </a>
-                                <a href="#" class="code-btn" onclick="playCustomSound(); event.preventDefault();">
+                                <a href="#" class="code-btn" onclick="event.preventDefault();">
                                     <i class="fas fa-code"></i> Code
                                 </a>
                             </div>
@@ -574,7 +1497,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title">About Me</h2>
@@ -618,7 +1540,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Let's Connect!</h2>
@@ -656,13 +1577,152 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 Ketan Kini. All rights reserved. | Fresh Graduate Designer & Developer</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        let audioBuffer = null;
+        let audioContext = null;
+
+        function initAudioContext() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            return audioContext;
+        }
+
+        function playCustomSound() {
+            if (!audioContext) {
+                initAudioContext();
+            }
+            // Simple beep sound without external URL
+            try {
+                const context = audioContext;
+                const oscillator = context.createOscillator();
+                const gainNode = context.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(context.destination);
+                
+                oscillator.frequency.value = 800;
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0.3, context.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, context.currentTime + 0.1);
+                
+                oscillator.start(context.currentTime);
+                oscillator.stop(context.currentTime + 0.1);
+            } catch(e) {
+                console.log('Sound playback not available');
+            }
+        }
+
+        document.addEventListener('click', () => {
+            initAudioContext();
+        }, { once: true });
+
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.graphic-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.filter === category) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                    card.style.animation = 'fadeIn 0.5s ease-out';
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        function filterWebProjects(category) {
+            const cards = document.querySelectorAll('.web-card');
+            const buttons = document.querySelectorAll('.web-filter-btn');
+            
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.filter === category) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                    card.style.animation = 'fadeIn 0.5s ease-out';
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        const cursorLight = document.querySelector('.cursor-light');
+        const cursorDot = document.querySelector('.cursor-dot');
+
+        document.addEventListener('mousemove', (e) => {
+            if (cursorLight && cursorDot) {
+                cursorLight.style.left = (e.clientX - 200) + 'px';
+                cursorLight.style.top = (e.clientY - 200) + 'px';
+                cursorDot.style.left = (e.clientX - 4) + 'px';
+                cursorDot.style.top = (e.clientY - 4) + 'px';
+            }
+        });
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            playCustomSound();
+            alert('Thank you for reaching out! I will get back to you soon. 🚀');
+            event.target.reset();
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    playCustomSound();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                playCustomSound();
+                navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+                navMenu.style.position = 'absolute';
+                navMenu.style.top = '60px';
+                navMenu.style.left = '0';
+                navMenu.style.right = '0';
+                navMenu.style.flexDirection = 'column';
+                navMenu.style.background = 'rgba(255, 255, 255, 0.95)';
+                navMenu.style.backdropFilter = 'blur(10px)';
+                navMenu.style.gap = '1rem';
+                navMenu.style.padding = '2rem';
+                navMenu.style.zIndex = '999';
+            });
+        }
+
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.opacity = '1';
+            document.body.style.transition = 'opacity 0.5s ease';
+        }, 100);
+    </script>
 </body>
 </html>
